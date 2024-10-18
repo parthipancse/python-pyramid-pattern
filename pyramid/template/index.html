@@ -8,33 +8,24 @@
 <body>
     <h1>Generate a Number Pattern</h1>
     
-    <!-- Form to take user input -->
     <form method="POST">
         <label for="num_rows">Enter the number of rows:</label>
         <input type="number" id="num_rows" name="num_rows" min="1" required>
         <button type="submit">Generate</button>
     </form>
-
-    <!-- Div to display the pattern -->
     <div id="pattern"></div>
 
     <script>
-        // Get the number of rows from the Flask template
         const numRows = {{ num_rows | default(0) }};
         
         if (numRows > 0) {
             const patternDiv = document.getElementById("pattern");
-            
-            // Clear the previous pattern if any
             patternDiv.innerHTML = '';
-
-            // Loop to generate the pattern based on the user's input
             for (let i = 1; i <= numRows; i++) {
                 let line = '';
                 for (let j = 1; j <= i; j++) {
                     line += i;  // Append the number 'i', 'i' times
                 }
-                // Create a paragraph element to display each line
                 const p = document.createElement('p');
                 p.textContent = line;
                 patternDiv.appendChild(p);  // Add the line to the patternDiv
